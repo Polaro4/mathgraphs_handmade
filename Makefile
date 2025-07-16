@@ -33,7 +33,7 @@ OBJS += $(GLAD_OBJECT)
 CXXFLAGS = -I$(GLFW_INCLUDE_PATH) -I$(GLAD_INCLUDE_PATH) -Wall -g -std=c++23 # Ou -std=gnu++23
 
 # Flags para o linker (caminhos de biblioteca, bibliotecas para vincular)
-LDFLAGS = -L$(GLFW_LIB_PATH) -lglfw3 -lgdi32 -lopengl32 -static-libgcc -static-libstdc++ -Wl,--subsystem,windows
+LDFLAGS = -L$(GLFW_LIB_PATH) -lglfw3 -lgdi32 -lopengl32 -static-libgcc -static-libstdc++ # -Wl,--subsystem,windows
 
 
 # Regra padrão: Compila tudo para criar o TARGET
@@ -51,6 +51,7 @@ $(TARGET): $(OBJS)
 $(GLAD_OBJECT): $(GLAD_BASE_DIR)/src/glad.c
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Regra para limpar (remover arquivos gerados)
+#comando para limpar os arquivos de compilação geradod
+#usar o comando "make clean"
 clean:
 	-rm $(TARGET) $(OBJS)
